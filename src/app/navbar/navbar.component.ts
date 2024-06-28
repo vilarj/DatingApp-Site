@@ -39,4 +39,11 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
+
+  /**
+   * Loging out of the site. This function sets the loggedIn flag to false.
+   */
+  logout(): void {
+    this.loggedIn = false;
+  }
 }

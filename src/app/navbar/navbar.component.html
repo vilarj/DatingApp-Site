@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#">Dating App</a>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="loggedIn">
         <li class="nav-item">
           <a class="nav-link" href="#">Matches</a>
         </li>
@@ -13,12 +13,25 @@
         <li class="nav-item">
           <a class="nav-link">Messages</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
       </ul>
+
+      <div class="dropdown" *ngIf="loggedIn">
+        <a class="dropdown-toggle text-light">Welcome User</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item">Edit</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+
       <form
         #loginForm="ngForm"
         class="d-flex"
         (ngSubmit)="login()"
         autocomplete="off"
+        *ngIf="!loggedIn"
       >
         <input
           name="username"
