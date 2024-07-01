@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
    * Constructor.
    *
    * @param {HttpClient} _http used for making HTTP requests.
-   * @param {AccountService} accountService used for setting up the local storage
+   * @param {AccountService} _accountService used for setting up the local storage
    *                         of the current user.
    */
   constructor(
     private _http: HttpClient,
-    private accountService: AccountService
+    private _accountService: AccountService
   ) {}
 
   /**
@@ -60,6 +60,6 @@ export class AppComponent implements OnInit {
     }
 
     const user: User = JSON.parse(userString);
-    this.accountService.setCurrenUser(user);
+    this._accountService.setCurrenUser(user);
   }
 }
