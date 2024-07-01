@@ -21,7 +21,16 @@ export class NavbarComponent implements OnInit {
    * ngOnInit method derived from OnInit.
    */
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this._accountServive.currentUser$.subscribe({
+      next: (user) => (this.loggedIn = !!user),
+      error: (error) => console.log(error),
+    });
+  }
 
   /**
    * This function makes a POST request to the login endpoint of the API.
@@ -42,8 +51,10 @@ export class NavbarComponent implements OnInit {
 
   /**
    * Loging out of the site. This function sets the loggedIn flag to false.
+   * And, removes the local storage information for current user.
    */
   logout(): void {
     this.loggedIn = false;
+    this._accountServive.logout();
   }
 }
