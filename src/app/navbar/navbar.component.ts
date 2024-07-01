@@ -20,11 +20,14 @@ export class NavbarComponent implements OnInit {
   /**
    * ngOnInit method derived from OnInit.
    */
-
   ngOnInit(): void {
     this.getCurrentUser();
   }
 
+  /**
+   * Gets the current user's information. Also,
+   * handles next and error stages of the subscription.
+   */
   getCurrentUser() {
     this._accountServive.currentUser$.subscribe({
       next: (user) => (this.loggedIn = !!user),
